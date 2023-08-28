@@ -1,0 +1,33 @@
+{% extends 'newsapp/base.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Categories</title>
+</head>
+<body>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h2>Add Categories</h2>
+    <form method="post" action="{% url 'create_category' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Category</button>
+    </form>
+   
+    </form>
+    <br>
+    <p>Go back to Admin page</p>
+    <a href="{% url 'adminpage' %}">Adminpage</a>
+</body>
+</html>
+
+
+{% endblock %}

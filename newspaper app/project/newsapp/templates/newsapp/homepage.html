@@ -1,0 +1,38 @@
+{% extends 'newsapp/base.html' %}
+
+{% block content %}
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Articles by Category</title>
+</head>
+<body>
+    <h2>Select Category</h2>
+    <form method="get" action="{% url 'get_articles_by_category' %}">
+        <label for="selected_category">Select Category:</label>
+        <select name="selected_category" id="selected_category">
+            {% for category in categories %}
+                <option value="{{ category.id }}">{{ category.name }}</option>
+            {% endfor %}
+        </select>
+        <button type="submit">Show Articles</button>
+    </form>
+
+    <h2>Articles</h2>
+    {% if articles %}
+        <ul>
+            {% for article in articles %}
+                <li>
+                    <h3>{{ article.title }}</h3>
+                    <p>{{ article.publish_date }}</p>
+                    <p>{{ article.article_body }}</p>
+                </li>
+            {% endfor %}
+        </ul>
+    {% else %}
+        <p>No articles available for the selected category.</p>
+    {% endif %}
+</body>
+</html>
+
+{% endblock %}

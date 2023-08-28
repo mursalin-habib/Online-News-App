@@ -1,0 +1,33 @@
+{% extends 'newsapp/base.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Categories and Articles</title>
+</head>
+<body>
+    <h2>Add Categories</h2>
+    <form method="post" action="{% url 'create_category' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Category</button>
+    </form>
+   
+
+    <h2>Add Articles</h2>
+    <form method="post" action="{% url 'add_article' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Article</button>
+    </form>
+    
+    </form>
+    <p>Go to Home page</p>
+    <a href="{% url 'homepage' %}">Homepage</a>
+</body>
+</html>
+
+
+{% endblock %}

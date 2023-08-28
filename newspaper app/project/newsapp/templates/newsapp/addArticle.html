@@ -1,0 +1,33 @@
+{% extends 'newsapp/base.html' %}
+
+{% block content %}
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Add Articles</title>
+</head>
+<body>
+    {% if messages %}
+        <ul class="messages">
+            {% for message in messages %}
+                <li{% if message.tags %} class="{{ message.tags }}"{% endif %}>{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <h2>Add Articles</h2>
+    <form method="post" action="{% url 'add_article' %}">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit">Add Article</button>
+    </form>
+   
+    </form>
+    <br>
+    <p>Go back to Admin page</p>
+    <a href="{% url 'adminpage' %}">Adminpage</a>
+</body>
+</html>
+
+
+{% endblock %}
